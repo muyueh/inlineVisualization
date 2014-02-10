@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inline Visualization</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<style type="text/css">
+	body{
+		font-family: 'PT Serif', serif;
+		font-size: 16px;
+	}
+	</style>
+</head>
+<body>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8">
+			<h1>Inline Visualization</h1>
+
+<p><br></p>
+
+<p>Sparkilne <svg width="40px" height="14px"><path d="M0,1L1.6666666666666665,0.8333333333333333C3.333333333333333,0.6666666666666666,6.666666666666666,0.3333333333333333,10,3.333333333333333C13.333333333333332,6.333333333333333,16.666666666666664,12.666666666666666,20,13.833333333333332C23.333333333333332,15,26.666666666666664,11,30,7.833333333333332C33.33333333333333,4.666666666666666,36.666666666666664,2.333333333333333,38.33333333333333,1.1666666666666665L40,0L40,18L38.33333333333333,18C36.666666666666664,18,33.33333333333333,18,29.999999999999996,18C26.666666666666664,18,23.333333333333332,18,20,18C16.666666666666664,18,13.333333333333332,18,10,18C6.666666666666666,18,3.333333333333333,18,1.6666666666666665,18L0,18Z" fill="orange" opacity="0.3" stoke-width="1px" stroke="black"></path></svg> is a inline visualization that fits nicely within the text. Tufte described it as "data-intense, design-simple, word-sized graphics". It's especially useful when you have to visualize a list of item, you can list them in column, where it's very easy to compare different data (small-multiple technique). </p>
+
+<table>
+<tr><td>Apple</td><td><svg width="40px" height="14px"><path d="M0,6L1.6666666666666665,5.333333333333333C3.333333333333333,4.666666666666667,6.666666666666666,3.333333333333333,10,5.166666666666666C13.333333333333332,6.999999999999999,16.666666666666664,11.999999999999998,20,14.5C23.333333333333332,17,26.666666666666664,17,30,16.999999999999996C33.33333333333333,17,36.666666666666664,17,38.33333333333333,16.999999999999996L40,17L40,18L38.33333333333333,18C36.666666666666664,18,33.33333333333333,18,29.999999999999996,18C26.666666666666664,18,23.333333333333332,18,20,18C16.666666666666664,18,13.333333333333332,18,10,18C6.666666666666666,18,3.333333333333333,18,1.6666666666666665,18L0,18Z" fill="orange" opacity="0.3" stoke-width="1px" stroke="black"></path></svg></td></tr>
+
+<tr><td>Google</td><td><svg width="40px" height="14px"><path d="M0,10L1.6666666666666665,10.833333333333332C3.333333333333333,11.666666666666666,6.666666666666666,13.333333333333332,10,13.166666666666666C13.333333333333332,13,16.666666666666664,11,20,10.5C23.333333333333332,10,26.666666666666664,11,30,10.333333333333334C33.33333333333333,9.666666666666666,36.666666666666664,7.333333333333333,38.33333333333333,6.166666666666666L40,5L40,18L38.33333333333333,18C36.666666666666664,18,33.33333333333333,18,29.999999999999996,18C26.666666666666664,18,23.333333333333332,18,20,18C16.666666666666664,18,13.333333333333332,18,10,18C6.666666666666666,18,3.333333333333333,18,1.6666666666666665,18L0,18Z" fill="orange" opacity="0.3" stoke-width="1px" stroke="black"></path></svg></td></tr>
+<tr><td>Amazon</td><td><svg width="40px" height="14px"><path d="M0,15L1.6666666666666665,15.666666666666666C3.333333333333333,16.333333333333332,6.666666666666666,17.666666666666664,10,15.333333333333332C13.333333333333332,13,16.666666666666664,7,20,5.666666666666666C23.333333333333332,4.333333333333333,26.666666666666664,7.666666666666666,30,9C33.33333333333333,10.333333333333332,36.666666666666664,9.666666666666666,38.33333333333333,9.333333333333332L40,9L40,18L38.33333333333333,18C36.666666666666664,18,33.33333333333333,18,29.999999999999996,18C26.666666666666664,18,23.333333333333332,18,20,18C16.666666666666664,18,13.333333333333332,18,10,18C6.666666666666666,18,3.333333333333333,18,1.6666666666666665,18L0,18Z" fill="orange" opacity="0.3" stoke-width="1px" stroke="black"></path></svg></td></tr>
+</table>
+
+<p><br>
+<br></p>
+
+<p>Yet, is there other form of inline visualization? </p>
+
+<p>I wanted to visualize the import/export <a href="http://portal.g0v.ronny.tw/">dataset</a> of Taiwan, it's a long list, with more than 30k item. </p>
+
+<p>To give you an idea, this a simplify version of the dataset: </p>
+
+<pre><code>{name: "Special quality beef quarter-carcasses and cuts of steaks", level: 3, quantity: 503100, seasonality: [100, 10, 3, 12, 30, 40, 21, 99, 10, 31], origin: [{France: 100, Italy: 20}]},
+{name: "Ground meat from special quality beef quarter-carcasses and cuts of steaks", level: 4, quantity: 500000, seasonality: [30, 10, 3, 12, 30, 40, 21, 99, 10, 31], origin: [{Spain: 100, Italy: 20}]},
+{name: "Special quality beef quarter-carcasses of bovine animals, boneless, fresh or chilled", level: 4, quantity: 3000, seasonality: [20, 10, 3, 12, 30, 40, 21, 99, 10, 31], origin: [{UK: 100, Italy: 20}]},
+{name: "Other special quality beef quarter-carcasses and cuts of steaks", level: 4, quantity: 100, seasonality: [10, 10, 3, 12, 30, 40, 21, 99, 10, 31], origin: [{USA: 100, South Africa: 20}]}
+</code></pre>
+
+<p>Each item has a hierachy level, the absolute quantity of the item, the seasonality of the item, and the country of origin. In the following, I will talk about the alternative that I have tried under each scenario, followed by an annotated <code>code</code> of its implementation in d3. For code readibility, I will be using generated data instead of real data.</p>
+
+<h3>Hierachy</h3>
+
+<p>First, we need to display hierarchical relationship of the data, several idea comes to mind: </p>
+
+<ul>
+<li>Font size</li>
+<li>Background Color</li>
+<li>Indentation </li>
+</ul>
+
+<div class="hierachyTable"></div>
+
+<p>Using <code>font size</code> is visually expensive, it eats up a lot of room, and breaks the height on your row. The <code>background color</code> method comes from MS Excel, it's a good way to spot max/min, but it's hard to compare other value. The idea of <code>indentation</code> comes from the design of <a href="https://news.ycombinator.com/">hack news</a>, where follow-up comments were indented. The code is easy to implement, it's visually clear, and elegant.</p>
+
+<pre><code>function indentHierachy(selection){
+
+    selection
+        .insert("td")
+        .text(function(d){ return d.label; })
+        .attr({
+            "class": "indentHierachy",
+            "width": svgWidth
+        })
+        .style({
+            "font-size": "12px",
+            "padding-left": function(d){ return (d.value * 2) + "em"; } // For the indentation
+        });
+}
+</code></pre>
+
+<h3>Absolute Quantity</h3>
+
+<p>Second, we want to show absolute quantity. The challenge is to enable the reader to see forest and tree: reader will first have a quick scan on the important value, then they might want to know the exact figure of each item.</p>
+
+<ul>
+<li>Bar</li>
+<li>Circle size</li>
+<li>Background Color</li>
+<li>System of numeration</li>
+</ul>
+
+<div class="absValueTable"></div>
+
+<p>Here we try to use <code>Background color</code> again, just to see its performance against other graph. <code>Circle size</code> easily exceed the height limit, after that, it serves a similar pupose to <code>bar chart</code>. <code>Bar chart</code> is fairly good, it can let reader compare different value very quickly, but I wished that bar chart can deliver more information to the reader. </p>
+
+<p>It occurs to me, that on a very large scale, the length of the bar chart equals to the order of magnitude, and we alreay have a very efficient system to deal with it: our <code>system of numeration</code>. With good alignment, the difference in length is the difference in order of magnitude. The reason why this doesn't usually works, is that we want to show the pricise value, leading to too much information. If we were to round-up to the most significant digit, it will be easier to compare the difference in value. </p>
+
+<p>I ended up emphasizing the most significant digit, and fading out all other digit. Viewer can use the position of the first digit to learn about the most important information (approximate value), they still can get the exact figure. I think the list precedence should be: <code>order of magnitude (length of number)</code> <code>&gt;</code> <code>most significant digit</code> <code>&gt;</code> <code>other digits</code>. </p>
+
+<p>Also in convention, we use <code>,</code> (60% of the world )or <code>.</code> (24% of the world) as decimal mark (such as <code>1,000</code>), here I choosed to use space (<code>1 000</code>) in the hope that I can please reader from both system. </p>
+
+<pre><code>// this  is to single out the first digit from the other
+function cutHead(string){
+    var head = string.slice(0, 1);
+    var tail = string.slice(1);
+    var opacity = 0.5;
+    return "&lt;span class='dhead' style='font-weight: 900'&gt;" + head + "&lt;/span&gt;" + "&lt;span class='drest' style='opacity:" + opacity + "'&gt;" + tail + "&lt;/span&gt;";
+};
+
+//return number into string with decimal mark, here we use " " instead of ","
+function addSpace(string){
+    var Brkunit = 3;
+    if(string.length &gt; Brkunit ){
+        var l = string.length;
+        var head = string.slice(0, l - Brkunit);
+        var tail = string.slice(-Brkunit);
+
+        return addSpace(head) + " " + tail;
+    }
+    else{
+        return string;
+    }
+};
+
+function absQuanNum(selection){
+    selection
+        .insert("td")
+        .attr({
+            "class": "indentHierachy",
+            "width": svgWidth
+        })
+        .html(function(d){  // note that here we are using .html() instead of .text()
+            return cutHead(addSpace(d.value + ""));
+        })
+        .style({
+            "text-align":"right"
+        })
+}
+</code></pre>
+
+<h3>Seasonality</h3>
+
+<p>Another challenge is to decode seasonality. My inspiration come from weekday/hour heatmap of commit on <a href="https://github.com/">github</a>, here we use it to display monthly average. For no good reason, I used <code>circle</code> and <code>rect</code> to make two different version (which yields no difference). </p>
+
+<p><code>Sparkline</code> may also be a good alternative: by encoding monthly data along the x-axis. Yet if we are already using <code>sparkline</code> in the traditional way of displaying historical value, it's better to use different graph, so to avoid confusion. For this reason, I ended up choosing heatmap. </p>
+
+<div class="seasonTable"></div>
+
+<pre><code>function seasHeatCircle(selection){
+    var cr = 4; 
+
+    selection
+        .insert("td")
+        .attr({
+            "class": "indentHierachy",
+            "width": svgWidth
+        })
+        .append("svg")
+        .attr({
+            "width": svgWidth, 
+            "height": "18px"
+        })
+        .selectAll("circle")
+        .data(function(d){ 
+            // console.log(d.value);
+            return d.value;
+        })
+        .enter()
+        .append("circle")
+        .attr({
+            "cx": function(d, i){ return i * cr * 2 + (cr); },
+            "cy": 9,
+            "r": cr
+        })
+        .style({
+            "fill": bcolor,
+            "opacity": function(d){ 
+                console.log(d);
+                return d / 100; }
+        });
+}
+</code></pre>
+
+<h3>Composition &amp; Concentration</h3>
+
+<ul>
+<li>pie chart</li>
+<li>stacked bar chart </li>
+</ul>
+
+<p>Most of the items are composed from multilpe souces, and we want to show how much we depends on our main source. Two graph comes in minds pie chart, and stacked bar chart.</p>
+
+<p><code>Pie chart</code> is better at noticing concentration (largest vs. rest), and <code>stacked bar</code> chart seems to be better for showing the relative shares of each sources. </p>
+
+<div class="compareTable"></div>
+
+<pre><code>function compoPie(selection){
+    var r = 8;
+    var color = d3.scale.category20c();
+    var arc = d3.svg.arc()
+        .outerRadius(r);
+
+    var pie = d3.layout.pie()
+        .value(function(d){ return d; });
+
+    var gs = selection
+        .insert("td")
+        .attr({
+            "class": "indentHierachy",
+            "width": svgWidth
+        })
+        .append("svg")
+        .attr({
+            "width": svgWidth, 
+            "height": "18px"
+        })
+        .selectAll("blank")
+        .data(function(d){ return pie(d.value); })
+        .enter()
+        .append("g")
+        .attr({
+            "transform": "translate(" + r + "," + r + ")"
+        })
+        .append("path")
+        .attr({
+            "fill": function(d, i){ 
+                if(i === 0){
+                    return "orange";
+                }
+                return color(i);},
+            "d": arc
+        });
+
+}
+</code></pre>
+
+<h3>Country of Origin</h3>
+
+<ul>
+<li>Flag</li>
+<li>Initial</li>
+<li>Full name</li>
+</ul>
+
+<p>The svg flag collection comes from <a href="https://github.com/koppi/iso-country-flags-svg-collection">koppi</a>, <code>flag</code> look nice on the visualization, it is also easy to pick up repetive pattern on flag. I was afraid that people can't relate the country name from the flag, so I added the country name as <code>title</code>, so it will appears on <code>mouseover</code>.</p>
+
+<div class="originTable"></div>
+
+<pre><code>function originFlag(selection){
+    selection
+        .insert("td")
+        .append("img")
+        .attr({
+            "src" : function(d){ return ("./flag/" + d.initial + ".svg"); },
+            "width": "15px",
+            "height": "15px",
+            "title": function(d){ return d.value ;}
+        });
+}
+</code></pre>
+
+<h3>Everything put together</h3>
+
+<p>We want to balance the visual display of each column, so there is no column that is too "shinny", and took away all attention from the reader. One way of doing so, is to control the space/width of each colum, another hack is to decrease the contrast of the column by increasing <code>opacity</code> value.</p>
+
+<p>System wise, we want a row based structure that will allow up perform add/delete/sort action based on one single row. </p>
+
+<pre><code>// for binding the header to out target div
+function createTable(tableHeader, divClassName){
+    var table = d3.select(divClassName)
+        .append("table");
+
+    table
+        .append("tr")
+        .selectAll("td")
+        .data(tableHeader)
+        .enter()
+        .append("td")
+        .text(function(d){ return d;})
+
+    return table;
+}
+
+// we return the list of function in a closure
+function compare(colAction){
+    var draw = function(selection){
+        selection.each(function(d, i){
+            for(act in colAction){
+                colAction[act](d3.select(this)); // here we bind d3.select(this) data to the function
+            }
+        });
+    };
+    return draw; // return as a closure
+}
+
+
+// here is how we create one table  
+// we bind all the drawing function to compare(), so that it binds the data for us
+var hierachyComp = compare([showRawData, sizeHierachy, colorHierachy, indentHierachy]);
+
+createTable(["Hierachy Level", "Size", "BackColor", "Indentation"], ".hierachyTable")
+    .selectAll("blank")
+    .data( 
+        dataGenerator(// generating the data randomly
+            function(){
+                return {"value": Math.floor(Math.random() * 8), "label": "this is some kind of description."};
+            }
+            )
+        )
+    .enter()
+    .append("tr") // we are binding the data to "tr"
+    .call(hierachyComp);
+</code></pre>
+
+<p>We bind data to each row (<code>tr</code>), speicify a list of drawing function, and return it as a closure (as Bostock suggested in <a href="http://bost.ocks.org/mike/chart/">Towards Reusable Charts</a>). This method especially is helpful if you want to dynamically change the order of your columns, or re-use your chart in many different table (as with this article). </p>
+
+			
+		</div>
+	</div>
+</div>
+	
+
+<script type="text/javascript">
+
+var svgWidth = 150;
+var bcolor = "orange";
+
+
+function cutHead(string){
+	var head = string.slice(0, 1);
+	var tail = string.slice(1);
+	var opacity = 0.5;
+	return "<span class='dhead' style='font-weight: 900'>" + head + "</span>" + "<span class='drest' style='opacity:" + opacity + "'>" + tail + "</span>";
+};
+
+
+
+function addSpace(string){
+	var Brkunit = 3;
+	if(string.length > Brkunit ){
+		var l = string.length;
+		var head = string.slice(0, l - Brkunit);
+		var tail = string.slice(-Brkunit);
+
+		return addSpace(head) + " " + tail;
+	}
+	else{
+		return string;
+	}
+};
+
+
+function createTable(tableHeader, divClassName){
+	var table = d3.select(divClassName)
+		.append("table");
+
+	table
+		.append("tr")
+		.selectAll("td")
+		.data(tableHeader)
+		.enter()
+		.append("td")
+		.text(function(d){ return d;})
+
+	return table;
+}
+
+
+function compare(colAction){
+	var draw = function(selection){
+		selection.each(function(d, i){
+			// console.log(d);
+			for(act in colAction){
+				colAction[act](d3.select(this));
+			}
+		});
+	};
+	return draw;
+}
+
+// var title = ["value", "by Size", "by Color", "by Indentation"];
+
+function showRawData(selection){
+	selection
+		.insert("td")
+		.text(function(d){ return d.value;})
+		.attr({
+			"width": svgWidth, 
+		})
+
+}
+
+function sizeHierachy(selection){
+	
+	selection
+		.insert("td")
+		.text(function(d){ return d.label; })
+		.attr({
+			"class": "sizeHierachy",
+			"width": "235px"
+		})
+		.style({
+			"font-size": function(d){ 
+				// console.log(12 + (d.level * 10));
+				return (12 + (d.value * 2)) + "px";
+			}
+		});
+}
+
+function colorHierachy(selection){
+	selection
+		.insert("td")
+		.text(function(d){ return d.label; })
+		.attr({
+			"class": "colorHierachy",
+			"width": "235px"
+		})
+		.style({
+			"font-size": "12px",
+			"background": function(d){
+				return "rgba(255, 0, 0, " + (0.8 - (d.value/10)) + ")";
+			}
+		});
+}
+
+function indentHierachy(selection){
+
+	selection
+		.insert("td")
+		.text(function(d){ return d.label; })
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.style({
+			"font-size": "12px",
+			"padding-left": function(d){ return (d.value * 2) + "em"; }
+		});
+}
+
+
+
+function absQuanBar(selection){
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.insert("svg")
+		.attr({
+			"width": svgWidth,
+			"height": "18px"
+		})
+		.append("rect")
+		.attr({
+			"x": "0px",
+			"y": "9px",
+			"height": "18px",
+			"width": function(d){ return Math.random()*30;}
+		})
+		.style({
+			"opacity": 0.5
+		});
+}
+
+function absQuanCir(selection){
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.insert("svg")
+		.attr({
+			"width": svgWidth,
+			"height": "18px"
+		})
+		.append("circle")
+		.attr({
+			"cx": "0px",
+			"cy": "9px",
+			"r": function(d){ return Math.random() * 20 + "px"; }
+		})
+		.style({
+			"opacity": 0.5
+		});
+}
+
+function absQuanBac(selection){
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.text(function(d){ return d.value;})
+		.style({
+			"background": function(d){
+				return "rgba(255, 0, 0, " + (d.value/10000) + ")";
+			},
+			"text-align":"right"
+		});
+}
+
+function absRounded(selection){
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.html(function(d){
+			var numberStr = d.value + "";
+
+			return (+numberStr[0]) * Math.pow(10, numberStr.length - 1);
+		})
+		.style({
+			"text-align":"right"
+		})
+}
+
+function absQuanNum(selection){
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.html(function(d){ 
+			return cutHead(addSpace(d.value + ""));
+		})
+		.style({
+			"text-align":"right"
+		})
+}
+
+function seasHeatRect(selection){
+	var rr = 8;
+
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.append("svg")
+		.attr({
+			"width": svgWidth, 
+			"height": "18px"
+		})
+		.selectAll("rect")
+		.data(function(d){ 
+			// console.log(d.value);
+			return d.value;
+		})
+		.enter()
+		.append("rect")
+		.attr({
+			"x": function(d, i){ return i * (rr + 1) + (rr); },
+			"y": 9,
+			"width": rr,
+			"height": rr
+		})
+		.style({
+			"fill": bcolor,
+			"opacity": function(d){ return d / 100; }
+		});	
+}
+
+function seasHeatCircle(selection){
+	var cr = 4; 
+
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.append("svg")
+		.attr({
+			"width": svgWidth, 
+			"height": "18px"
+		})
+		.selectAll("circle")
+		.data(function(d){ 
+			// console.log(d.value);
+			return d.value;
+		})
+		.enter()
+		.append("circle")
+		.attr({
+			"cx": function(d, i){ return i * cr * 2 + (cr); },
+			"cy": 9,
+			"r": cr
+		})
+		.style({
+			"fill": bcolor,
+			"opacity": function(d){ 
+				console.log(d);
+				return d / 100; }
+		});
+}
+
+function seasSparkline(selection){
+
+	var rowData = selection.data()[0].value;
+	// console.log(rowData);
+	var xTen = d3.scale.linear().domain([0, 11]).range([0, svgWidth]);
+	var yTen = d3.scale.linear().domain([0, d3.max(rowData)]).range([0, 18]);
+
+
+	var areaFunc = d3.svg.area()
+				.x(function(d, i) { return xTen(i); })
+				.y0(function(d) { return 18 - yTen(d); })
+				.y1(18)
+				.interpolate("basis");
+
+	selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.append("svg")
+		.attr({
+			"width": svgWidth, 
+			"height": "18px"
+		})
+		.selectAll("path")
+		.data(
+			function(d){ 
+			// console.log(d.value);
+			return [d.value];
+		})
+		.enter()
+		.append("path")
+		.attr({
+			"d": function(d){
+				// console.log(d);
+				return areaFunc(d);
+			},
+			"fill": bcolor, 
+			"opacity": 0.5,
+			"stoke-width": "1px",
+			"stroke": "black"
+		});
+}
+
+
+
+function compoPie(selection){
+	var r = 8;
+	var color = d3.scale.category20c();
+	var arc = d3.svg.arc()
+		.outerRadius(r);
+
+	var pie = d3.layout.pie()
+		// .sort(function(a, b){ return b - a; })
+		.value(function(d){ return d; });
+
+	var gs = selection
+		.insert("td")
+		.attr({
+			"class": "indentHierachy",
+			"width": svgWidth
+		})
+		.append("svg")
+		.attr({
+			"width": svgWidth, 
+			"height": "18px"
+		})
+		.selectAll("blank")
+		.data(function(d){ return pie(d.value); })
+		.enter()
+		.append("g")
+		.attr({
+			"transform": "translate(" + r + "," + r + ")"
+		})
+		.append("path")
+		.attr({
+			"fill": function(d, i){ 
+				if(i === 0){
+					return "orange";
+				}
+				return color(i);},
+			"d": arc
+		});
+		
+}
+
+function compoBar(selection){
+	var color = d3.scale.category20c();
+	var stacked = 0;
+
+	var countryData = []; 
+
+	selection.data()[0].value.filter(function(f, j){
+		var obj = {"x0": 0, "value": 0};
+				obj.x0 = stacked;
+				obj.value = f;
+				stacked += f;
+
+				countryData.push(obj);
+				return true;
+		});
+
+	console.log(countryData);
+
+	var stackedScale = d3.scale.linear().domain([0, stacked]).range([0, 40]);
+
+	selection
+		.insert("td")
+		.append("svg")
+		.attr({
+			"width": "40px",
+			"height": "18px",					
+		})
+		.style({
+			"margin-left": "5px"
+		})
+		.selectAll("rect")
+		.data(countryData)
+		.enter()
+		.append("rect")
+		.attr({
+			"height": 4,
+			"width": function(d,i){ return stackedScale(d.value); },
+			"x": function(d,i){ return stackedScale(d.x0); },
+			"y": 8
+		})
+		.style({
+			"fill": function(d, i){
+				if(!i){
+					return "orange"; 	
+				}
+				return color(i);
+			}
+		});
+}
+
+
+function originInit(selection){
+	selection
+		.insert("td")
+		.text(function(d){ return d.initial; })
+}
+
+function originFlag(selection){
+	selection
+		.insert("td")
+		.append("img")
+		.attr({
+			"src" : function(d){ return ("./flag/" + d.initial + ".svg"); },
+			"width": "15px",
+			"height": "15px",
+			"title": function(d){ return d.value ;}
+		});
+}
+
+var hierachyComp = compare([showRawData, sizeHierachy, colorHierachy, indentHierachy]);
+var quantityComp = compare([showRawData, absQuanBar, absQuanCir, absQuanBac, absRounded, absQuanNum]);
+var seasonComp = compare([showRawData, seasHeatRect, seasHeatCircle, seasSparkline]);
+var compoComp = compare([showRawData, compoPie, compoBar]);
+var originComp = compare([showRawData, originInit, originFlag]);
+
+
+var countryTable = [
+	{"initial":"ai", "value":"Anguilla"},
+	{"initial":"al", "value":"Albania"},
+	{"initial":"am", "value":"Armenia"},
+	{"initial":"ao", "value":"Angola"},
+	{"initial":"aq", "value":"Antarctica"},
+	{"initial":"ar", "value":"Argentina"},
+	{"initial":"as", "value":"American Samoa"},
+	{"initial":"at", "value":"Austria"},
+	{"initial":"au", "value":"Australia"}
+];
+
+
+
+
+function dataGenerator(objectFunction){
+	// console.log(objectFunction);
+	var dataSet = [];
+	for(var i = 0; i < 10; i++){
+		dataSet.push(objectFunction());
+	}
+	// console.log(dataSet);
+	return dataSet;
+}
+
+createTable(["Hierachy Level", "Size", "BackColor", "Indentation"], ".hierachyTable")
+	.selectAll("blank")
+	.data(
+		dataGenerator(
+			function(){
+				return {"value": Math.floor(Math.random() * 8), "label": "this is some kind of description."};
+			}
+			)
+		)
+	.enter()
+	.append("tr")
+	.call(hierachyComp);
+
+
+createTable(["value", "BarChart", "Circle", "BackColor", "Rounded Number", "Formatted Number"], ".absValueTable")
+	.selectAll("blank")
+	.data(
+		dataGenerator(
+			function(){
+				return {"value": Math.floor(Math.random() * 10000 / (Math.floor(Math.random() * 4) + 1)) };
+			}
+			)
+		)
+	.enter()
+	.append("tr")
+	.call(quantityComp);
+
+
+createTable(["value", "HeatRect", "HeatCircle", "Sparkline"], ".seasonTable")
+	.selectAll("blank")
+	.data(
+		dataGenerator(
+			function(){
+				var varray = []
+				for(var i = 0; i < 12; i++){
+					varray.push(Math.floor(Math.random() * 100));					
+				}
+				return {"value": varray};
+			}
+			)
+		)
+	.enter()
+	.append("tr")
+	.call(seasonComp);
+
+createTable(["value", "pie", "bar"], ".compareTable")
+	.selectAll("blank")
+	.data(
+		dataGenerator(
+			function(){
+				var varray = []
+				for(var i = 0; i < Math.random() * 5; i++){
+					varray.push(Math.floor(Math.random()*100));
+				}
+				return {"value": varray.sort(function(a, b){ return b - a;  })};
+			}
+			)
+		)
+	.enter()
+	.append("tr")
+	.call(compoComp);
+
+
+createTable(["Full Name", "Initial", "Flag"], ".originTable")
+	.selectAll("blank")
+	.data(
+		dataGenerator(
+			function(){
+				var ctry = Math.floor(countryTable.length * Math.random());
+				return {"value": countryTable[ctry]["value"], "initial": countryTable[ctry]["initial"]};
+				
+			}
+			)
+		)
+	.enter()
+	.append("tr")
+	.call(originComp);
+
+
+
+
+</script>
+</body>
+</html>
